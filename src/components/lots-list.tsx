@@ -45,8 +45,10 @@ const LotsList = ({ parkingLots }: LotsListProps) => {
         .map((lot) => (
           <div className={styles.lot} key={lot.lotName}>
             <div>{lot.lotName}</div>
-            <div className={styles[getLotClassNameByCount(lot.spacesCount)]}>
-              {lot.spacesCount}
+            <div>
+              <mark className={styles[getLotClassNameByCount(lot.spacesCount)]}>
+                {lot.spacesCount}
+              </mark>
             </div>
           </div>
         ))}

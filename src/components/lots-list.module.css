@@ -11,16 +11,25 @@
     gap: 1rem;
   }
 
+  .lot mark {
+    padding: 2px;
+    font-weight: bold;
+  }
+
   .full-or-less-than-10 {
-    color: #e10000;
+    background-color: #e10000;
   }
 
   .almost-full {
-    color: #d6d60c;
+    background-color: #d6d60c;
   }
 
   .more-than-20 {
-    color: #07a307;
+    background-color: #07a307;
+  }
+
+  .between-10-and-1 {
+    background-color: #ae7201;
   }
 
   & .lots-header {
