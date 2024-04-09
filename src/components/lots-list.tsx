@@ -40,7 +40,9 @@ const LotsList = ({ parkingLots }: LotsListProps) => {
       {parkingLots
         .filter((parkingLot) => {
           if (searchQ)
-            return parkingLot.lotName.toLowerCase().includes(searchQ);
+            return parkingLot.lotName
+              .toLowerCase()
+              .includes(searchQ.toLowerCase());
           return parkingLot;
         })
         .map((lot) => (
