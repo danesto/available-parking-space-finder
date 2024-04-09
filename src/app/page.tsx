@@ -9,7 +9,7 @@ export default async function Home() {
   const parkingLotsData = await nextjsCache(
     getFreeSpotsCount,
     ["parking_lots_cache_key"],
-    { revalidate: 300 }
+    { revalidate: 240 }
   )();
 
   return (
