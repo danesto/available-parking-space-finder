@@ -1,7 +1,8 @@
 import { load } from "cheerio";
 import { ParkingLot } from "./queries.types";
+import { kv } from "@vercel/kv";
 
-const getFreeSpotsCount = async () => {
+const scrapeParkingLotsData = async () => {
   const htmlResponse = await fetch(
     "https://www.parking-servis.co.rs/garaze-i-parkiralista"
   );
@@ -17,7 +18,6 @@ const getFreeSpotsCount = async () => {
   const parkingSpaces: ParkingLot[] = [];
 
   spaceCounts.each((i, div) => {
-    console.log($(div).find("span").text());
     const lotName = $(div).find("a").text();
     const spacesCount = $(div).find("span").text();
 
@@ -27,7 +27,28 @@ const getFreeSpotsCount = async () => {
     });
   });
 
-  console.log("ps", parkingSpaces.slice());
+  return parkingSpaces;
+};
+
+const getFreeSpotsCount = async () => {
+  if (kv) {
+    const cachedParkingData: ParkingLot[] | null = await kv.get("parking_lots");
+
+    if (cachedParkingData) {
+      if (cachedParkingData?.length > 0) {
+        console.log("returning cached data: ", cachedParkingData);
+        return cachedParkingData;
+      }
+    } else {
+      const freshData = await scrapeParkingLotsData();
+
+      await kv.set("parking_lots", JSON.stringify(freshData), {
+        ex: 60 * 5,
+      });
+
+      return freshData;
+    }
+  }
 };
 
 export { getFreeSpotsCount };

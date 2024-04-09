@@ -1,0 +1,53 @@
+.lots-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  width: 100%;
+  max-width: 600px;
+
+  & .lot {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .full-or-less-than-10 {
+    color: #e10000;
+  }
+
+  .almost-full {
+    color: #d6d60c;
+  }
+
+  .more-than-20 {
+    color: #07a307;
+  }
+
+  & .lots-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .lots-header .header-col {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+  }
+
+  .search-lots-input {
+    background-color: aliceblue;
+    padding: 0.5rem 0.875rem;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    color: #020202;
+  }
+
+  .search-lots-input:active,
+  .search-lots-input:focus {
+    outline: none;
+    /* border: 2px solid #b98201; */
+    outline: 2px solid #b98201;
+    outline-offset: 2px;
+  }
+}
