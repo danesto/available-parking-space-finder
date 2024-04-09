@@ -1,6 +1,7 @@
 import { load } from "cheerio";
 import { ParkingLot } from "./queries.types";
 import { kv } from "@vercel/kv";
+import { unstable_noStore } from "next/cache";
 
 const scrapeParkingLotsData = async () => {
   const htmlResponse = await fetch(
@@ -31,6 +32,8 @@ const scrapeParkingLotsData = async () => {
 };
 
 const getFreeSpotsCount = async () => {
+  unstable_noStore();
+
   if (kv) {
     const cachedParkingData: ParkingLot[] | null = await kv.get("parking_lots");
 
@@ -41,6 +44,7 @@ const getFreeSpotsCount = async () => {
       }
     } else {
       const freshData = await scrapeParkingLotsData();
+      console.log("IM HERE GETTING FRESH DATA");
 
       await kv.set("parking_lots", JSON.stringify(freshData), {
         ex: 60 * 4,
