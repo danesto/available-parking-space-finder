@@ -9,13 +9,15 @@ export default async function Home() {
   const parkingLotsData = await nextjsCache(
     getFreeSpotsCount,
     ["parking_lots_cache_key"],
-    { revalidate: 240 }
+    { revalidate: 300 }
   )();
 
   return (
     <main className={styles.main}>
       <Image
-        {...CoverPhoto}
+        src={CoverPhoto.src}
+        width={CoverPhoto.width}
+        height={CoverPhoto.height}
         className={styles["background-image"]}
         alt="belgrade city cover photo"
       />

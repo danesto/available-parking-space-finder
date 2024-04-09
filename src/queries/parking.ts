@@ -43,7 +43,7 @@ const getFreeSpotsCount = async () => {
       const freshData = await scrapeParkingLotsData();
 
       await kv.set("parking_lots", JSON.stringify(freshData), {
-        ex: 60 * 5,
+        ex: 60 * 4,
       });
 
       return freshData;
