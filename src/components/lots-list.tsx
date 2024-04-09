@@ -3,7 +3,9 @@ import { ParkingLot } from "@/queries/queries.types";
 import { getLotClassNameByCount } from "./helpers";
 import styles from "./lots-list.module.css";
 import { ChangeEvent, useState } from "react";
+import ExternalLink from "@/assets/icons/link-external.svg";
 import Link from "next/link";
+import Image from "next/image";
 
 type LotsListProps = {
   parkingLots?: ParkingLot[];
@@ -48,8 +50,18 @@ const LotsList = ({ parkingLots }: LotsListProps) => {
         .map((lot) => (
           <div className={styles.lot} key={lot.lotName}>
             {!!lot.lotLocation ? (
-              <Link href={lot.lotLocation} target="_blank">
-                {lot.lotName}
+              <Link
+                href={lot.lotLocation}
+                target="_blank"
+                className={styles["gmap-link"]}
+              >
+                {lot.lotName}{" "}
+                <Image
+                  src={ExternalLink.src}
+                  width={18}
+                  height={18}
+                  alt="open on google maps"
+                />
               </Link>
             ) : (
               <div>{lot.lotName}</div>

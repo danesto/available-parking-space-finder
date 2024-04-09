@@ -8,7 +8,19 @@
   & .lot {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+  }
+
+  .gmap-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .gmap-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .lot mark {
