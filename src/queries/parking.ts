@@ -20,10 +20,12 @@ const scrapeParkingLotsData = async () => {
 
   spaceCounts.each((i, div) => {
     const lotName = $(div).find("a").text();
+    const lotLocation = $(div).find("a").attr("href");
     const spacesCount = $(div).find("span").text();
 
     parkingSpaces.push({
       lotName,
+      lotLocation,
       spacesCount,
     });
   });

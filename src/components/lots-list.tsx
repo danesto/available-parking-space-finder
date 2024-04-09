@@ -3,6 +3,7 @@ import { ParkingLot } from "@/queries/queries.types";
 import { getLotClassNameByCount } from "./helpers";
 import styles from "./lots-list.module.css";
 import { ChangeEvent, useState } from "react";
+import Link from "next/link";
 
 type LotsListProps = {
   parkingLots?: ParkingLot[];
@@ -44,7 +45,14 @@ const LotsList = ({ parkingLots }: LotsListProps) => {
         })
         .map((lot) => (
           <div className={styles.lot} key={lot.lotName}>
-            <div>{lot.lotName}</div>
+            {!!lot.lotLocation ? (
+              <Link href={lot.lotLocation} target="_blank">
+                {lot.lotName}
+              </Link>
+            ) : (
+              <div>{lot.lotName}</div>
+            )}
+
             <div>
               <mark className={styles[getLotClassNameByCount(lot.spacesCount)]}>
                 {lot.spacesCount}
