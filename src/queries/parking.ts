@@ -39,14 +39,10 @@ const getFreeSpotsCount = async () => {
   if (kv) {
     const cachedParkingData: ParkingLot[] | null = await kv.get("parking_lots");
 
-    if (cachedParkingData) {
-      if (cachedParkingData?.length > 0) {
-        console.log("returning cached data: ", cachedParkingData);
-        return cachedParkingData;
-      }
+    if (cachedParkingData && cachedParkingData?.length > 0) {
+      return cachedParkingData;
     } else {
       const freshData = await scrapeParkingLotsData();
-      console.log("IM HERE GETTING FRESH DATA");
 
       await kv.set("parking_lots", JSON.stringify(freshData), {
         ex: 60 * 4,
