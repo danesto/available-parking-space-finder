@@ -9,6 +9,16 @@
 plugins {
     // Apply the foojay-resolver plugin to allow automatic download of JDKs
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    id("com.gradle.develocity") version("3.17.4")
+}
+
+develocity {
+    buildScan {
+        termsOfUseUrl.set("https://gradle.com/help/legal-terms-of-use")
+        termsOfUseAgree.set("yes")
+        tag("frontend-engineer")
+        link("project", "https://github.com/danesto/available-parking-space-finder")
+    }
 }
 
 rootProject.name = "belgrade-public-parking-finder"
