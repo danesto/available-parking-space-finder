@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import type { Viewport } from "next";
+import { Analytics } from "@vercel/analytics/react";
+
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -40,6 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sr">
+      <Analytics />
       <body className={spaceGrotesk.className}>{children}</body>
     </html>
   );
