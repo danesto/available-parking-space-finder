@@ -1,0 +1,86 @@
+.banner {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 0.75rem 0.5rem 0.75rem 0.75rem;
+  border-radius: 14px;
+  background: var(--sign-blue);
+  color: var(--sign-blue-ink);
+}
+
+.icon {
+  border-radius: 10px;
+  background: #fff;
+}
+
+.text {
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.body {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.shareIcon {
+  display: inline-block;
+  margin: 0 0.2rem;
+  vertical-align: -0.2em;
+}
+
+.install {
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--sign-blue);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.banner :focus-visible {
+  outline-color: #fff;
+}
+
+@media (max-width: 30rem) {
+  .banner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .install {
+    grid-column: 2 / 4;
+    justify-self: start;
+  }
+
+  .close {
+    grid-row: 1;
+    grid-column: 3;
+  }
+}
