@@ -1,22 +1,15 @@
-import { getFreeSpotsCount } from "@/queries/parking";
-import styles from "./page.module.css";
-import LotsList from "@/components/lots-list";
-import CoverPhoto from "@/assets/beograd.avif";
-import Image from "next/image";
+import ParkingBoard from "@/components/parking-board";
+import { getLots } from "@/lib/parking";
+
+// Re-render at most once a minute; matches the scrape cache in lib/parking.ts.
+export const revalidate = 60;
 
 export default async function Home() {
-  const parkingLotsData = await getFreeSpotsCount();
+  const data = await getLots();
 
   return (
-    <main className={styles.main}>
-      <Image
-        src={CoverPhoto.src}
-        width={CoverPhoto.width}
-        height={CoverPhoto.height}
-        className={styles["background-image"]}
-        alt="belgrade city cover photo"
-      />
-      <LotsList parkingLots={parkingLotsData} />
+    <main>
+      <ParkingBoard initial={data} />
     </main>
   );
 }
